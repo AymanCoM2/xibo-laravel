@@ -29,7 +29,7 @@
     <!-- Header Search -->
     <div id="page-header-search" class="overlay-header bg-primary">
         <div class="content-header">
-            <form class="w-100" action="be_pages_generic_search.html" method="POST">
+            <form class="w-100" action="" method="">
                 <div class="input-group">
                     <input type="text" class="form-control border-0" placeholder="Search your network.."
                         id="page-header-search-input" name="page-header-search-input">
