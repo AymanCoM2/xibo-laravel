@@ -7,3 +7,6 @@ Steps Needed :
 3- Create Some Factory ? 
 ==============
 Create Prodcuts Same Way 
+[ Product Id , Name , SKU , Quantity  , {FK} the Store id ]
+
+==========TODOS : NOTES ======
