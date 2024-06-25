@@ -71,13 +71,13 @@
                 <hr>
                 <li class="nav-main-heading">Products</li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="{{ route('create-store') }}">
+                    <a class="nav-main-link" href="{{ route('create-product') }}">
                         <i class="nav-main-link-icon fa fa-plus"></i>
                         <span class="nav-main-link-name">New Product</span>
                     </a>
                 </li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="{{ route('manage-stores') }}">
+                    <a class="nav-main-link" href="{{ route('manage-products') }}">
                         <i class="nav-main-link-icon fa-product-hunt"></i>
                         <span class="nav-main-link-name">Manage Products</span>
                     </a>

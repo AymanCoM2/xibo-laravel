@@ -9,9 +9,15 @@ class Store extends Model
 {
     use HasFactory;
 
-    protected $fillable  = [
+    protected $fillable = [
         'store_name',
         'assigned_screen',
         'screen_id',
     ];
+
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

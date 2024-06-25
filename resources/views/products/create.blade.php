@@ -1,18 +1,18 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    Home Page
+    Create new Product
 @endsection
 
 @section('content')
     <div class="block block-rounded">
         <div class="block-header block-header-default">
-            <h3 class="block-title">Create</h3>
+            <h3 class="block-title">Create a new Product</h3>
         </div>
         <div class="block-content">
             <form action="be_forms_elements.html" method="POST" enctype="multipart/form-data" onsubmit="return false;">
                 <!-- Basic Elements -->
-                <h2 class="content-heading pt-0">Create new Store</h2>
+                <h2 class="content-heading pt-0">Create new Product</h2>
                 <div class="row push">
                     <div class="col-lg-4">
                         <p class="text-muted">

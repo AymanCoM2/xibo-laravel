@@ -23,7 +23,7 @@ Route::get('/manage-stores', function () {
 })->name('manage-stores');
 
 
-// ^ Here are the Routes Related to the Products Links 
+// * Here are the Routes Related to the Products Links 
 
 Route::get('/create-product', function () {
     return view('products.create');
