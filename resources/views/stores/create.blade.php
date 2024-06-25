@@ -10,8 +10,9 @@
             <h3 class="block-title">Create</h3>
         </div>
         <div class="block-content">
-            <form action="be_forms_elements.html" method="POST" enctype="multipart/form-data" onsubmit="return false;">
+            <form action="{{ route('create-store-post') }}" method="POST" enctype="multipart/form-data">
                 <!-- Basic Elements -->
+                @csrf
                 <h2 class="content-heading pt-0">Create new Store</h2>
                 <div class="row push">
                     <div class="col-lg-4">
@@ -23,7 +24,7 @@
                         <div class="mb-4">
                             <label class="form-label" for="store-text-input">Store Name<span
                                     class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="store-text-input" name="store-text-input"
+                            <input type="text" class="form-control" id="store-text-input" name="store_name"
                                 placeholder="Enter Store name">
                         </div>
                     </div>
@@ -37,7 +38,7 @@
                     <div class="col-lg-8 col-xl-5">
                         <div class="mb-4">
                             <label class="form-label" for="example-select">Select Display</label>
-                            <select class="form-select" id="example-select" name="example-select">
+                            <select class="form-select" id="example-select" name="screen_id">
                                 <option selected>Select Display</option>
                                 <option value="1">Option #1</option>
                                 <option value="2">Option #2</option>

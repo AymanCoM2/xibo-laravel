@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->string('sku');
             $table->integer('quantity');
             $table->unsignedBigInteger('store_id');
-            $table->foreign('store_id')->references('id')->on('stores');
+            $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
             $table->timestamps();
         });
     }
