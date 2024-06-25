@@ -11,4 +11,5 @@
     <link rel="stylesheet" id="css-main" href="{{ asset('assets/css/dashmix.min.css') }}">
     <link rel="stylesheet" id="css-theme" href="{{ asset('assets/css/themes/xmodern.min.css') }}">
     <link rel="stylesheet" id="css-theme" href="{{ asset('assets/fonts/fontawesome/fa-brands-400.ttf') }}">
+    @yield('extra-css')
 </head>

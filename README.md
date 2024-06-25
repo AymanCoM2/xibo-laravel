@@ -1,5 +1,4 @@
-Xibo-Laravel
-=============
+
 Steps Needed : 
 1- Make the -mfc for the Store with Properties 
 2- Make the views For the CRUD 
@@ -8,5 +7,4 @@ Steps Needed :
 ==============
 Create Prodcuts Same Way 
 [ Product Id , Name , SKU , Quantity  , {FK} the Store id ]
-
 ==========TODOS : NOTES ======

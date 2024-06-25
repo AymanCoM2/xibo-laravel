@@ -17,7 +17,9 @@ class StoreFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'store_name' => $this->faker->company,
+            'assigned_screen' => $this->faker->optional()->word,
+            'screen_id' => $this->faker->optional()->uuid,
         ];
     }
 }

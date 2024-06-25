@@ -57,18 +57,31 @@
             <ul class="nav-main">
                 <li class="nav-main-heading">Stores</li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="">
+                    <a class="nav-main-link" href="{{ route('create-store') }}">
                         <i class="nav-main-link-icon fa fa-plus"></i>
                         <span class="nav-main-link-name">New Store</span>
                     </a>
                 </li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="">
+                    <a class="nav-main-link" href="{{ route('manage-stores') }}">
                         <i class="nav-main-link-icon fa fa-store"></i>
                         <span class="nav-main-link-name">Manage Stores</span>
                     </a>
                 </li>
-                <br>
+                <hr>
+                <li class="nav-main-heading">Products</li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link" href="{{ route('create-store') }}">
+                        <i class="nav-main-link-icon fa fa-plus"></i>
+                        <span class="nav-main-link-name">New Product</span>
+                    </a>
+                </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link" href="{{ route('manage-stores') }}">
+                        <i class="nav-main-link-icon fa-product-hunt"></i>
+                        <span class="nav-main-link-name">Manage Products</span>
+                    </a>
+                </li>
                 <li class="nav-main-heading">Dashboards</li>
                 <li class="nav-main-item">
                     <a class="nav-main-link" href="#">
