@@ -7,12 +7,12 @@
 @section('content')
     <div class="block block-rounded">
         <div class="block-header block-header-default">
-            <h3 class="block-title">Create a new Product</h3>
         </div>
         <div class="block-content">
             <form action="be_forms_elements.html" method="POST" enctype="multipart/form-data" onsubmit="return false;">
                 <!-- Basic Elements -->
-                <h2 class="content-heading pt-0">Create new Product</h2>
+                <h4 class="content-heading pt-0">Create new Product</h4>
+
                 <div class="row push">
                     <div class="col-lg-4">
                         <p class="text-muted">
@@ -21,24 +21,24 @@
                     </div>
                     <div class="col-lg-8 col-xl-5">
                         <div class="mb-4">
-                            <label class="form-label" for="store-text-input">Store Name<span
+                            <label class="form-label" for="store-text-input">Product Name <span
                                     class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="store-text-input" name="store-text-input"
-                                placeholder="Enter Store name">
+                            <input type="text" class="form-control" id="Product-text-input" name="Product-text-input"
+                                placeholder="Enter Product name">
                         </div>
                     </div>
                 </div>
                 <div class="row push">
                     <div class="col-lg-4">
                         <p class="text-muted">
-                            Select Dispaly for the Store
+                            Select Store for the Product
                         </p>
                     </div>
                     <div class="col-lg-8 col-xl-5">
                         <div class="mb-4">
-                            <label class="form-label" for="example-select">Select Display</label>
+                            <label class="form-label" for="example-select">Select Store <span class="text-danger">*</span></label>
                             <select class="form-select" id="example-select" name="example-select">
-                                <option selected>Select Display</option>
+                                <option selected>Select Store</option>
                                 <option value="1">Option #1</option>
                                 <option value="2">Option #2</option>
                                 <option value="3">Option #3</option>
@@ -46,11 +46,41 @@
                         </div>
                     </div>
                 </div>
+                <div class="row push">
+                    <div class="col-lg-4">
+                        <p class="text-muted">
+                            Product SKU
+                        </p>
+                    </div>
+                    <div class="col-lg-8 col-xl-5">
+                        <div class="mb-4">
+                            <label class="form-label" for="store-text-input">Product SKU <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="Product-text-input" name="Product-text-input"
+                                placeholder="Enter Product SKU">
+                        </div>
+                    </div>
+                </div> <div class="row push">
+                    <div class="col-lg-4">
+                        <p class="text-muted">
+                            Product Quantity
+                        </p>
+                    </div>
+                    <div class="col-lg-8 col-xl-5">
+                        <div class="mb-4">
+                            <label class="form-label" for="store-text-input">Product quantity <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="Product-text-input" name="Product-text-input"
+                                placeholder="Enter Product Quantity">
+                        </div>
+                    </div>
+                </div>
+
                 <!-- END Basic Elements -->
+
 
                 <div class="row push">
                     <div class="col-lg-4">
-
                     </div>
                     <div class="col-lg-8 col-xl-5">
                         <div class="mb-4">
