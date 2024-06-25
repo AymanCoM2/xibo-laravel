@@ -21,3 +21,5 @@ Route::get('/create-store', function () {
 Route::get('/manage-stores', function () {
     return view('stores.manage');
 })->name('manage-stores');
+
+

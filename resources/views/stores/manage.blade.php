@@ -18,20 +18,21 @@
                                 Id
                             </th>
                             <th>Store Name</th>
-                            <th style="width: 45%;">Screen</th>
+                            <th style="width: 35%;">Screen</th>
+                            <th style="width: 10%;">Products</th>
                             <th class="text-center" style="width: 100px;">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td class="text-center">
-                                <img class="img-avatar img-avatar48" src="assets/media/avatars/avatar5.jpg" alt="">
+                                1
                             </td>
                             <td class="fw-semibold">
                                 <a href="be_pages_generic_profile.html">Laura Carr</a>
                             </td>
                             <td>client1<em class="text-muted">@example.com</em></td>
-
+                            <td> <span class="badge bg-primary">45</span></td>
                             <td class="text-center">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip"
