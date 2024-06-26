@@ -92,7 +92,7 @@ Route::post('/create-product', function (Request $request) {
     $productQuantity = $request->product_quantity;
     $productStoreId = $request->product_store;
 
-    $newProduct = new Product() ; 
+    $newProduct = new Product();
     $newProduct->product_name = $productName;
     $newProduct->sku = $productSku;
     $newProduct->quantity = $productQuantity;
@@ -103,8 +103,8 @@ Route::post('/create-product', function (Request $request) {
 
 
 Route::get('/manage-products', function () {
-    $allProducts  = Product::paginate(5);
-    return view('products.manage' , compact('allProducts'));
+    $allProducts = Product::paginate(5);
+    return view('products.manage', compact('allProducts'));
 })->name('manage-products');
 
 
@@ -117,10 +117,12 @@ Route::post('/delete-product', function (Request $request) {
     return redirect()->route('manage-products');
 })->name('delete-product');
 
+
 Route::get('/edit-product/{product_id}', function (Request $request) {
     $editedProduct = Product::find($request->product_id);
+    $allStores  = Store::all();
     if ($editedProduct) {
-        return view('products.edit', compact(['editedProduct']));
+        return view('products.edit', compact(['editedProduct','allStores']));
     } else {
         return redirect()->route('manage-products');
     }

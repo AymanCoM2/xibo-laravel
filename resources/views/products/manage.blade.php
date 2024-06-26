@@ -36,11 +36,10 @@
                                 <td> <span class="badge bg-danger">{{ $product->quantity }}</span></td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip"
-                                            title="Edit">
+                                        <a type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip"
+                                            title="Edit" href="{{ route('edit-product', $product->id) }}">
                                             <i class="fa fa-pencil-alt"></i>
-                                        </button>
-
+                                        </a>
                                         <form action="{{ route('delete-product') }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
