@@ -2,10 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Validator;
 use App\Models\Store;
-use App\Models\Product;
-use Symfony\Component\HttpFoundation\Test\Constraint\ResponseFormatSame;
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
