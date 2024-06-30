@@ -1,0 +1,7 @@
+1- The Store Endpoints  ; 
+
+2- SMall UI For Consuming ; 
+
+3- the Sync Process / Event Notify after updating the Data 
+
+4-
