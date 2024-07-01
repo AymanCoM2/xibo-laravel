@@ -1,0 +1,11 @@
+UI: 
+Chips Bag And then Alert with the Prize ; 
+
+Data: 
+Channel Obesrver
+Syncing Data [ Once Data is Added to DB in Laravel ]
+
+
+APIs making 
+Views Observeing Data
+Screens Connected to Store; 
