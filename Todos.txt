@@ -1,13 +1,19 @@
-2- SMall UI For Consuming ; 
-
-3- the Sync Process / Event Notify after updating the Data 
-=====================
 In READ [ Space for the Prodcuts Of this Store]
 ==========TODOS : NOTES ======
 STORE: 
-4- Edit -> use Create For Editing 
+4- Submitting Edit -> use Create For Editing 
 =======================
 Then Managing The XIBO from It If possible ;
 =======================
 PRODUCT:
-4- Edit -> use Create For Editing 
+4- Submitting Edit -> use Create For Editing 
+
+
+
+
+
+
+
+//////////////////////
+1-The Sync Process / Event Notify after updating the Data ;
+2-
