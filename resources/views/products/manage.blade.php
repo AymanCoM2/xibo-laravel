@@ -30,7 +30,7 @@
                                     {{ $product->sku }}
                                 </td>
                                 <td class="fw-semibold">
-                                    <a href="be_pages_generic_profile.html">{{ $product->product_name }}</a>
+                                    {{ $product->product_name }}
                                 </td>
                                 <td>{{ $product->store->store_name }}</td>
                                 <td> <span class="badge bg-danger">{{ $product->quantity }}</span></td>

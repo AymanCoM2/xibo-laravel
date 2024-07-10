@@ -30,16 +30,14 @@
                                     {{ $store->id }}
                                 </td>
                                 <td class="fw-semibold">
-                                    <a href="be_pages_generic_profile.html"> {{ $store->store_name }}</a>
+                                    {{ $store->store_name }}
                                 </td>
                                 <td> {{ $store->screen_id }} | {{ $store->assigned_screen }}</td>
                                 <td> <span class="badge bg-primary">{{ $store->products->count() }}</span></td>
                                 <td class="text-center">
                                     <div class="btn-group">
-
-
                                         <a type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip"
-                                            title="Edit" href="{{ route('edit-store',$store->id) }}">
+                                            title="Edit" href="{{ route('edit-store', $store->id) }}">
                                             <i class="fa fa-pencil-alt"></i>
                                         </a>
 
