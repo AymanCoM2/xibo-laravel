@@ -15,12 +15,11 @@ Route::get('/home', function () {
     return view('home-page');
 })->name('home-page');
 
-// ! =============== From here i will Put the Routes Related to the STORE 
+// ! ===============  STORE  ==============
 
 Route::get('/create-store', function () {
     return view('stores.create');
 })->name('create-store');
-
 
 Route::post('/create-store', function (Request $request) {
     $validator = Validator::make($request->all(), [
@@ -39,7 +38,6 @@ Route::post('/create-store', function (Request $request) {
     return redirect()->route('manage-stores');
 })->name('create-store-post');
 
-
 Route::get('/manage-stores', function () {
     $allStores = Store::paginate(5);
     return view('stores.manage', compact(['allStores']));
@@ -54,7 +52,6 @@ Route::post('/delete-store', function (Request $request) {
     return redirect()->route('manage-stores');
 })->name('delete-store');
 
-
 Route::get('/edit-store/{store_id}', function (Request $request) {
     $editedStore = Store::find($request->store_id);
     if ($editedStore) {
@@ -63,8 +60,6 @@ Route::get('/edit-store/{store_id}', function (Request $request) {
         return redirect()->route('manage-stores');
     }
 })->name('edit-store');
-
-
 
 Route::post('/edit-store/{store_id}', function (Request $request) {
     $validator = Validator::make($request->all(), [
@@ -81,9 +76,9 @@ Route::post('/edit-store/{store_id}', function (Request $request) {
     $store->assigned_screen = null; // This needs Later Work 
     $store->save();
     return redirect()->route('manage-stores');
-})->name('create-store-post');
+})->name('edit-store-post');
 
-// !  Here are the Routes Related to the Products Links 
+// ! ==================== PRODUCTS ==================== 
 
 Route::get('/create-product', function () {
     $allStores = Store::all();
@@ -143,3 +138,31 @@ Route::get('/edit-product/{product_id}', function (Request $request) {
         return redirect()->route('manage-products');
     }
 })->name('edit-product');
+
+
+
+Route::post('/edit-product/{product_id}', function (Request $request) {
+    $validator = Validator::make($request->all(), [
+        'product_name' => 'required|string',
+        'product_sku' => 'required|string',
+        'product_quantity' => 'required|numeric',
+        'product_store' => 'required|exists:stores,id',
+    ]);
+
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors($validator)->withInput();
+    }
+
+    $productName = $request->product_name;
+    $productSku = $request->product_sku;
+    $productQuantity = $request->product_quantity;
+    $productStoreId = $request->product_store;
+
+    $newProduct = Product::findOrFail($request->edited_product_id);
+    $newProduct->product_name = $productName;
+    $newProduct->sku = $productSku;
+    $newProduct->quantity = $productQuantity;
+    $newProduct->store_id = $productStoreId;
+    $newProduct->save();
+    return redirect()->route('manage-products');
+})->name('edit-product-post');

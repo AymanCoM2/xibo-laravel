@@ -9,3 +9,6 @@ Syncing Data [ Once Data is Added to DB in Laravel ]
 APIs making 
 Views Observeing Data
 Screens Connected to Store; 
+
+
+TODO: Showing Validation ERRO in Edit Product and Store And other Forms ; 

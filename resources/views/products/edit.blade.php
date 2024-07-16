@@ -9,7 +9,7 @@
         <div class="block-header block-header-default">
         </div>
         <div class="block-content">
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('edit-product-post', $editedProduct->id) }}" method="POST" enctype="multipart/form-data">
                 <!-- Basic Elements -->
                 @csrf
                 <h4 class="content-heading pt-0">Edit Product</h4>
@@ -23,6 +23,7 @@
                         <div class="mb-4">
                             <label class="form-label" for="store-text-input">Product Name <span
                                     class="text-danger">*</span></label>
+                            <input type="hidden" value="{{ $editedProduct->id }}" name="edited_product_id">
                             <input type="text" class="form-control" id="Product-text-input" name="product_name"
                                 placeholder="Enter Product name" value="{{ $editedProduct->product_name }}">
                         </div>
@@ -81,7 +82,6 @@
                 </div>
 
                 <!-- END Basic Elements -->
-
 
                 <div class="row push">
                     <div class="col-lg-4">

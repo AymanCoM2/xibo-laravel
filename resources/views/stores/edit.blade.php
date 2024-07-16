@@ -10,7 +10,7 @@
             <h3 class="block-title">Edit Store</h3>
         </div>
         <div class="block-content">
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('edit-store-post', $editedStore->id) }}" method="POST" enctype="multipart/form-data">
                 <!-- Basic Elements -->
                 @csrf
                 <h2 class="content-heading pt-0">Edit Store</h2>
