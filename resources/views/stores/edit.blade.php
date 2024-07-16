@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    Edit Store  | {{ $editedStore->store_name }}
+    Edit Store | {{ $editedStore->store_name }}
 @endsection
 
 @section('content')
@@ -24,8 +24,9 @@
                         <div class="mb-4">
                             <label class="form-label" for="store-text-input">Store Name<span
                                     class="text-danger">*</span></label>
+                            <input type="hidden" name="edited_store_id" id="" value="{{ $editedStore->id }}">
                             <input type="text" class="form-control" id="store-text-input" name="store_name"
-                                placeholder="Enter Store name" value="{{ $editedStore->store_name  }}">
+                                placeholder="Enter Store name" value="{{ $editedStore->store_name }}">
                         </div>
                     </div>
                 </div>

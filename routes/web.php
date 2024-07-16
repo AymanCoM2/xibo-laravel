@@ -9,7 +9,6 @@ use App\Models\Product;
 Route::get('/', function () {
     // return view('welcome');
     return view('home-page');
-
 });
 
 Route::get('/home', function () {
@@ -38,7 +37,6 @@ Route::post('/create-store', function (Request $request) {
     $store->assigned_screen = null; // This needs Later Work 
     $store->save();
     return redirect()->route('manage-stores');
-
 })->name('create-store-post');
 
 
@@ -66,6 +64,24 @@ Route::get('/edit-store/{store_id}', function (Request $request) {
     }
 })->name('edit-store');
 
+
+
+Route::post('/edit-store/{store_id}', function (Request $request) {
+    $validator = Validator::make($request->all(), [
+        'store_name' => 'required|string',
+    ]);
+
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors($validator)->withInput();
+    }
+
+    $store = Store::findOrFail($request->edited_store_id);
+    $store->store_name = $request->store_name;
+    $store->screen_id = $request->screen_id;
+    $store->assigned_screen = null; // This needs Later Work 
+    $store->save();
+    return redirect()->route('manage-stores');
+})->name('create-store-post');
 
 // !  Here are the Routes Related to the Products Links 
 
@@ -122,7 +138,7 @@ Route::get('/edit-product/{product_id}', function (Request $request) {
     $editedProduct = Product::find($request->product_id);
     $allStores  = Store::all();
     if ($editedProduct) {
-        return view('products.edit', compact(['editedProduct','allStores']));
+        return view('products.edit', compact(['editedProduct', 'allStores']));
     } else {
         return redirect()->route('manage-products');
     }
