@@ -3,13 +3,16 @@ In READ [ Space for the Prodcuts Of this Store]
 =======================
 Then Managing The XIBO from It If possible ;
 
-
-
-
-
-
-
-
 //////////////////////
 1-The Sync Process / Event Notify after updating the Data ;
 2-
+============================
+Now What ? : 
+1- You need to Get all the Layouts 
+2 - you need to get all the Displays 
+3- Attaching Screens With Layouts to Show Them ; 
+======================
+1- Then Make JS pages ; 
+2- Put those Pages to ConsumeEndpoints ...etc 
+3- Mario Game + Rest
+SHOW the Result DEMO "Proof of Concept"

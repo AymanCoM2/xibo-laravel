@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Store;
 use App\Models\Product;
+use Illuminate\Support\Facades\Http;
+
 
 Route::get('/', function () {
     // return view('welcome');
@@ -14,9 +16,7 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('home-page');
 })->name('home-page');
-
 // ! ===============  STORE  ==============
-
 Route::get('/create-store', function () {
     return view('stores.create');
 })->name('create-store');
@@ -79,12 +79,10 @@ Route::post('/edit-store/{store_id}', function (Request $request) {
 })->name('edit-store-post');
 
 // ! ==================== PRODUCTS ==================== 
-
 Route::get('/create-product', function () {
     $allStores = Store::all();
     return view('products.create', compact('allStores'));
 })->name('create-product');
-
 
 Route::post('/create-product', function (Request $request) {
     $validator = Validator::make($request->all(), [
@@ -112,12 +110,10 @@ Route::post('/create-product', function (Request $request) {
     return redirect()->route('manage-products');
 })->name('create-product-post');
 
-
 Route::get('/manage-products', function () {
     $allProducts = Product::paginate(5);
     return view('products.manage', compact('allProducts'));
 })->name('manage-products');
-
 
 Route::post('/delete-product', function (Request $request) {
     $productId = $request->product_id;
@@ -128,7 +124,6 @@ Route::post('/delete-product', function (Request $request) {
     return redirect()->route('manage-products');
 })->name('delete-product');
 
-
 Route::get('/edit-product/{product_id}', function (Request $request) {
     $editedProduct = Product::find($request->product_id);
     $allStores  = Store::all();
@@ -138,8 +133,6 @@ Route::get('/edit-product/{product_id}', function (Request $request) {
         return redirect()->route('manage-products');
     }
 })->name('edit-product');
-
-
 
 Route::post('/edit-product/{product_id}', function (Request $request) {
     $validator = Validator::make($request->all(), [
@@ -166,3 +159,40 @@ Route::post('/edit-product/{product_id}', function (Request $request) {
     $newProduct->save();
     return redirect()->route('manage-products');
 })->name('edit-product-post');
+// ! ==================== Consuming XIBO  ==================== 
+
+Route::get('/get-displays-data', function (Request $request) {
+    /**
+     * 1- Get the Token : 
+     * TODO : See how to Make it Last Longer 
+     */
+    $xiboBaseUrl = "http://localhost/api/";
+    $response = Http::asForm()->post($xiboBaseUrl . "authorize/access_token", [
+        'client_id' => 'e4facebec0df822d59621962d1321606aa0e6ec4',
+        'client_secret' => '45cb3b5c8daad46bdac1fd91a2b44d92387d2ff02f17c00a849a8ceef96db9d52870c177d279e562f60c59531f0803b5e107105a41ec4b01691cb0ab2fdcc33d7b25babdffda0f98dddb20eedcdb1801e6f4d19cebd2c22ac4088652da60e39175139225b016edaa48152eb9a9c242f33e135ba08a2638c154feb7cdb1e5c3',
+        'grant_type' => 'client_credentials',
+    ]);
+
+    if ($response->successful()) {
+        $responseData = $response->json();
+        $cmsToken = $responseData['access_token']; // & 1 [TOKEN]
+        /**
+         * 2- Get the Displays and Show them 
+         */
+        $response = Http::withToken($cmsToken)
+            ->get($xiboBaseUrl . "display");
+        $displaysArray = $response->json(); // & 2 [DISPLAYS]
+
+        /**
+         * 3- Get also the Layouts With you to Assign Displays TO layouts 
+         *      - Display Management (Assign Layout , Enable/Disable , )
+         */
+
+
+        dd($displaysArray);
+        return response()->json($responseData);
+    } else {
+        dd(response()->json(['error' => 'Failed to get access token'], $response->status()));
+        return response()->json(['error' => 'Failed to get access token'], $response->status());
+    }
+})->name('get-displays');
