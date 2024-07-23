@@ -1,9 +1,3 @@
-APIs making 
-    - Make Layouts Blade Views and Assign Links To layouts as Web pages
-Screens Connected to Store; 
-TODO: Showing Validation ERRO in Edit Product and Store And other Forms ; 
-==========================
-Split Spin-Win Into 2 Pages 'Cheecker and Weheel'
 Mario Thing to "Assgin Layout"
 =====================
 All things Needed For Syncing Can be Collected in One Place
