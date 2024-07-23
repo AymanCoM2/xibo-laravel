@@ -43,7 +43,7 @@
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <a type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip"
-                                            title="Edit" href="">
+                                            title="Edit" href="{{ route('edit-display-get', $display->id) }}">
                                             <i class="fa fa-pencil-alt"></i>
                                         </a>
                                     </div>

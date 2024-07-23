@@ -224,7 +224,7 @@ Route::get('/get-displays-data', function (Request $request) {
         // dd($layoutsArray) ;
         foreach ($layoutsArray as $eachLayout) {
             $layoutXiboId  = $eachLayout['layoutId'];
-            $layoutExist = Layout::where('xiboId' , $layoutXiboId)->first();
+            $layoutExist = Layout::where('xiboId', $layoutXiboId)->first();
             if ($layoutExist) {
                 $layoutExist->xiboId = $eachLayout['layoutId'];
                 $layoutExist->publishingStatus = $eachLayout['publishedStatus'];
@@ -248,3 +248,13 @@ Route::get('/get-displays-data', function (Request $request) {
         return response()->json(['error' => 'Failed to get access token'], $response->status());
     }
 })->name('get-displays');
+
+
+Route::get('/edit-display/{display_id}', function (Request $request) {
+    $editedDisplay = Display::findOrFail($request->display_id) ; 
+    if ($editedDisplay) {
+        return view('displays.edit', compact(['editedDisplay']));
+    } else {
+        return redirect()->route('get-displays');
+    }
+})->name('edit-display-get');
