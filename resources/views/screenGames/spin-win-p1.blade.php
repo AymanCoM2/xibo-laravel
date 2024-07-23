@@ -37,8 +37,10 @@
         </div>
     </div>
 
-    <form action="{{ route('spin-win-page-p2') }}" id="next_page_spin">
+    <form action="{{ route('spin-win-page-p2') }}" id="next_page_spin" method="post">
         {{-- Hidden Form To Next Action,Submitted If all is Good --}}
+        @csrf
+        <input type="hidden" name="invoiceNumber" id="theSentInvoice">
     </form>
 
     <script>
@@ -60,6 +62,7 @@
                     if (data.valid) {
                         // GET TO NEXT Form 
                         // alert('VALID');
+                        document.getElementById("theSentInvoice").value = invoiceValue;
                         nextPageForm.submit();
                     } else {
                         invoiceInput.style.border = "2px solid red";

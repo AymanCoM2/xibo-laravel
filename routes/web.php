@@ -69,6 +69,15 @@ Route::get('/check-invoice/{invoice_number}', function (Request $request) {
 })->name('check_invoice');
 
 
-Route::get('/spin-win-page-p2', function () {
-    return view('screenGames.spin-win-p2');
+Route::post('/spin-win-page-p2', function (Request $request) {
+    $invoiceNumber = $request->invoiceNumber;
+    $relatedPrizes  = Prize::where('invoiceNumber', $invoiceNumber)->get();
+    $data  = [];
+    foreach ($relatedPrizes as $prize) {
+        $appendedPrize = new stdClass();
+        $appendedPrize->label = $prize->prizeName;
+        $appendedPrize->value = $prize->id;
+        $data[] = $appendedPrize;
+    }
+    return view('screenGames.spin-win-p2', ['prizeDataJson' => json_encode($data)]);
 })->name('spin-win-page-p2');
