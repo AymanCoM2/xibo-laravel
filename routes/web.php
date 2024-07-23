@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Display;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -162,6 +163,7 @@ Route::post('/edit-product/{product_id}', function (Request $request) {
 // ! ==================== Consuming XIBO  ==================== 
 
 Route::get('/get-displays-data', function (Request $request) {
+    //! Below is Logic For SYNCING "Displays&&LAyOUTS"+TOken
     /**
      * 1- Get the Token : 
      * TODO : See how to Make it Last Longer 
@@ -183,14 +185,42 @@ Route::get('/get-displays-data', function (Request $request) {
             ->get($xiboBaseUrl . "display");
         $displaysArray = $response->json(); // & 2 [DISPLAYS]
 
+        // ! Save them in Table -> Always Syncing With Xibo [ CRON maybe ]
+        // ! Any Update For any Screen Will Send request to Xibo 
+        // TODO : Make Also Layouts Saved Here For the Selection 
+        foreach ($displaysArray as $eachDisplay) {
+            $theDisplayid  = $eachDisplay['displayId'];
+
+            $displayObjectExist = Display::where('xiboId', $theDisplayid)->first();
+
+            if ($displayObjectExist) {
+                $displayObjectExist->xiboId = $eachDisplay['displayId'];
+                $displayObjectExist->isLoggedIn = $eachDisplay['loggedIn'];
+                $displayObjectExist->isAuthorized = $eachDisplay['licensed'];
+                $displayObjectExist->displayName = $eachDisplay['deviceName'];
+                $displayObjectExist->displayLayout = $eachDisplay['defaultLayout'];
+                $displayObjectExist->save();
+            } else {
+                $displayObject = new Display();
+                $displayObject->xiboId = $eachDisplay['displayId'];
+                $displayObject->isLoggedIn = $eachDisplay['loggedIn'];
+                $displayObject->isAuthorized = $eachDisplay['licensed'];
+                $displayObject->displayName = $eachDisplay['deviceName'];
+                $displayObject->displayLayout = $eachDisplay['defaultLayout'];
+                $displayObject->save();
+            }
+        }
+
+
+        
         /**
          * 3- Get also the Layouts With you to Assign Displays TO layouts 
          *      - Display Management (Assign Layout , Enable/Disable , )
+         * Selection is Only From Published "status" Layouts 
          */
 
-
-        dd($displaysArray);
-        return response()->json($responseData);
+        $allDisplays  = Display::paginate(5); // ! THIS IS THE ONLY LINE TO BE HERE , ALL ABOVE REMOVED[Sync,channel]
+        return view('displays.manage', compact(['allDisplays']));
     } else {
         dd(response()->json(['error' => 'Failed to get access token'], $response->status()));
         return response()->json(['error' => 'Failed to get access token'], $response->status());

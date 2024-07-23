@@ -87,12 +87,11 @@
                 <hr>
                 <li class="nav-main-heading">Displays</li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="{{ route('manage-products') }}">
+                    <a class="nav-main-link" href="{{ route('get-displays') }}">
                         <i class="nav-main-link-icon fa-product-hunt"></i>
                         <span class="nav-main-link-name">Manage Displays</span>
                     </a>
                 </li>
-
 
                 <li class="nav-main-heading">Dashboards</li>
                 <li class="nav-main-item">
