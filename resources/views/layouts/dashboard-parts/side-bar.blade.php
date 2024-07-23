@@ -16,7 +16,7 @@
         <div class="content-header justify-content-lg-center bg-primary">
             <!-- Logo -->
             <a class="fw-semibold text-white tracking-wide" href="{{ route('home-page') }}">
-                Xibo<span class="opacity-75">Chayah</span>
+                Chaya<span class="opacity-75">Chips</span>
             </a>
             <!-- END Logo -->
 
@@ -96,8 +96,15 @@
                 <li class="nav-main-heading">Dashboards</li>
                 <li class="nav-main-item">
                     <a class="nav-main-link" href="#">
+                        <i class="nav-main-link-icon fa fa-key"></i>
+                        <span class="nav-main-link-name">Credentials</span>
+                    </a>
+                </li>
+
+                <li class="nav-main-item">
+                    <a class="nav-main-link" href="#">
                         <i class="nav-main-link-icon fa fa-arrow-left"></i>
-                        <span class="nav-main-link-name">Go Back</span>
+                        <span class="nav-main-link-name">Log Out</span>
                     </a>
                 </li>
             </ul>

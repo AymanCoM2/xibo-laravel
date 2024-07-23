@@ -19,6 +19,8 @@ return new class extends Migration
             $table->boolean('isAuthorized')->nullable();
             $table->string('displayName')->nullable();
             $table->string('displayLayout')->nullable();
+            $table->string('displayLayoutId')->nullable();
+            //defaultLayoutId
             $table->timestamps();
         });
     }

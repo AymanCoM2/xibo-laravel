@@ -200,6 +200,7 @@ Route::get('/get-displays-data', function (Request $request) {
                 $displayObjectExist->isAuthorized = $eachDisplay['licensed'];
                 $displayObjectExist->displayName = $eachDisplay['deviceName'];
                 $displayObjectExist->displayLayout = $eachDisplay['defaultLayout'];
+                $displayObjectExist->displayLayoutId = $eachDisplay['defaultLayoutId'];
                 $displayObjectExist->save();
             } else {
                 $displayObject = new Display();
@@ -208,6 +209,7 @@ Route::get('/get-displays-data', function (Request $request) {
                 $displayObject->isAuthorized = $eachDisplay['licensed'];
                 $displayObject->displayName = $eachDisplay['deviceName'];
                 $displayObject->displayLayout = $eachDisplay['defaultLayout'];
+                $displayObject->displayLayoutId = $eachDisplay['defaultLayoutId'];
                 $displayObject->save();
             }
         }
@@ -239,8 +241,6 @@ Route::get('/get-displays-data', function (Request $request) {
             }
         }
 
-
-
         $allDisplays  = Display::paginate(5); // ! THIS IS THE ONLY LINE TO BE HERE , ALL ABOVE REMOVED[Sync,channel]
         return view('displays.manage', compact(['allDisplays']));
     } else {
@@ -251,10 +251,30 @@ Route::get('/get-displays-data', function (Request $request) {
 
 
 Route::get('/edit-display/{display_id}', function (Request $request) {
-    $editedDisplay = Display::findOrFail($request->display_id) ; 
+    $editedDisplay = Display::findOrFail($request->display_id);
     if ($editedDisplay) {
         return view('displays.edit', compact(['editedDisplay']));
     } else {
         return redirect()->route('get-displays');
     }
 })->name('edit-display-get');
+
+
+Route::post('/edit-display', function (Request $request) {
+    $displayObject  = Display::findOrFail($request->edited_display_id);
+
+    if ($displayObject->isAuthorized != $request->authorization) {
+        dd('Authorization Changed ');
+        // Comparare auth Old and new , Then Toggle 
+    }
+
+    if ($displayObject->displayLayoutId != $request->layout_id) {
+        dd('Layout Changed ');
+        // Compate layout id Old and new and then toggle 
+    }
+
+    dd('Nothing Changed');
+
+
+    // dd($request->all());
+})->name('edit-display-post');

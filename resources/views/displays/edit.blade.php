@@ -10,7 +10,7 @@
             <h3 class="block-title">Edit Display</h3>
         </div>
         <div class="block-content">
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('edit-display-post') }}" method="POST" enctype="multipart/form-data">
                 <!-- Basic Elements -->
                 @csrf
                 <h2 class="content-heading pt-0">Edit Display</h2>
@@ -23,24 +23,23 @@
                     <div class="col-lg-8 col-xl-5">
                         <div class="mb-4">
                             <input type="hidden" name="edited_display_id" value="{{ $editedDisplay->id }}">
+                            <input type="hidden" name="xibo_display_id" value="{{ $editedDisplay->xiboId }}">
                             <input type="text" class="form-control" id="store-text-input" name="display_name"
-                                value="{{ $editedDisplay->displayName }}">
+                                value="{{ $editedDisplay->displayName }}" disabled>
                         </div>
                     </div>
                 </div>
 
-
-
                 <div class="row push">
                     <div class="col-lg-4">
                         <p class="text-muted">
-                            Is Logged in 
+                            Is Logged in
                         </p>
                     </div>
                     <div class="col-lg-8 col-xl-5">
                         <div class="mb-4">
                             <input type="text" class="form-control" id="store-text-input" name="display_name"
-                                value="{{ $editedDisplay->displayName }}">
+                                value="{{ $editedDisplay->isLoggedIn ? 'Yes' : 'No' }}" disabled>
                         </div>
                     </div>
                 </div>
@@ -53,40 +52,39 @@
                     </div>
                     <div class="col-lg-8 col-xl-5">
                         <div class="mb-4">
-                            <select class="form-select" id="example-select" name="screen_id">
-                                <option selected></option>
-                                <option value="1">Option #1</option>
-                                <option value="2">Option #2</option>
-                                <option value="3">Option #3</option>
+                            <select class="form-select" id="example-select" name="layout_id">
+                                @foreach (\App\Models\Layout::all() as $layout)
+                                    <option value="{{ $layout->xiboId }}"
+                                        {{ $layout->name == $editedDisplay->displayLayout ? 'selected' : '' }}>
+                                        {{ $layout->name }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
                 </div>
                 <!-- END Basic Elements -->
 
-
                 <div class="row push">
                     <div class="col-lg-4">
                         <p class="text-muted">
-                           Is Authroized
+                            Is Authroized
                         </p>
                     </div>
                     <div class="col-lg-8 col-xl-5">
                         <div class="mb-4">
-                            <select class="form-select" id="example-select" name="screen_id">
-                                <option selected></option>
-                                <option value="1">Option #1</option>
-                                <option value="2">Option #2</option>
-                                <option value="3">Option #3</option>
+                            <select class="form-select" id="example-select" name="authorization">
+                                <option value="1" {{ $editedDisplay->isAuthorized == '1' ? 'selected' : '' }}>Yes
+                                </option>
+                                <option value="0" {{ $editedDisplay->isAuthorized == '0' ? 'selected' : '' }}>No
+                                </option>
                             </select>
                         </div>
                     </div>
                 </div>
 
-
                 <div class="row push">
                     <div class="col-lg-4">
-
                     </div>
                     <div class="col-lg-8 col-xl-5">
                         <div class="mb-4">

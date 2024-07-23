@@ -15,5 +15,6 @@ class Display extends Model
         'isAuthorized',
         'displayName',
         'displayLayout',
+        'displayLayoutId'
     ];
 }

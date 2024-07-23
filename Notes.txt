@@ -7,8 +7,13 @@ Syncing Data [ Once Data is Added to DB in Laravel ]
 
 
 APIs making 
+    - Make Layouts Blade Views and Assign Links To layouts as Web pages
+    
 Views Observeing Data
 Screens Connected to Store; 
 
 
 TODO: Showing Validation ERRO in Edit Product and Store And other Forms ; 
+
+Sync the data from API abut Layouts and Displays and Token 
+and Data ....etc
