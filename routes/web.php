@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Display;
+use App\Models\Layout;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -211,13 +212,34 @@ Route::get('/get-displays-data', function (Request $request) {
             }
         }
 
-
-        
         /**
          * 3- Get also the Layouts With you to Assign Displays TO layouts 
          *      - Display Management (Assign Layout , Enable/Disable , )
          * Selection is Only From Published "status" Layouts 
          */
+        $responseForLayouts = Http::withToken($cmsToken)
+            ->get($xiboBaseUrl . "layout");
+        $layoutsArray = $responseForLayouts->json(); // & 3 [LAYOUTS]
+
+        // dd($layoutsArray) ;
+        foreach ($layoutsArray as $eachLayout) {
+            $layoutXiboId  = $eachLayout['layoutId'];
+            $layoutExist = Layout::where($layoutXiboId)->first();
+            if ($layoutExist) {
+                $layoutExist->xiboId = $eachLayout['layoutId'];
+                $layoutExist->publishingStatus = $eachLayout['publishedStatus'];
+                $layoutExist->name = $eachLayout['layout'];
+                $layoutExist->save();
+            } else {
+                $layoutObject  = new Layout();
+                $layoutObject->xiboId = $eachLayout['layoutId'];
+                $layoutObject->publishingStatus = $eachLayout['publishedStatus'];
+                $layoutObject->name = $eachLayout['layout'];
+                $layoutObject->save();
+            }
+        }
+
+
 
         $allDisplays  = Display::paginate(5); // ! THIS IS THE ONLY LINE TO BE HERE , ALL ABOVE REMOVED[Sync,channel]
         return view('displays.manage', compact(['allDisplays']));
