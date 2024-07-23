@@ -274,7 +274,12 @@ Route::post('/edit-display', function (Request $request) {
         $token = getTokenHelper();
         $xiboBaseUrl = "http://localhost/api/";
         $changeDefaultLayout = Http::withToken($token)
-            ->put($xiboBaseUrl . "display/defaultlayout/" . $displayObject->xiboId);
+            ->put(
+                $xiboBaseUrl . "display/defaultlayout/" . $displayObject->xiboId,
+                [
+                    'layoutId' => $request->layout_id
+                ]
+            );
     }
     return redirect()->route('get-displays');
 })->name('edit-display-post');
