@@ -11,9 +11,10 @@
 <body>
     <div id="chart"></div>
     <div id="balloon-container"></div>
+    <form action="{{ route('spin-win-page-p1') }}" id="first_page_spin" method="get">
+    </form>
     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 
     <script>
         const theSpinningWheel = document.getElementById("chart");
@@ -180,18 +181,18 @@
                         //populate question
                         d3.select("#question h1").text(data[picked].question);
                         oldrotation = rotation;
-
                         /* Get the result value from object "data" */
                         console.log(data[picked].value);
-
                         /* Comment the below line for restrict spin to sngle time */
-
                         Swal.fire({
                             title: "You Won : " + data[picked].label,
-                            confirmButtonText: "Save",
+                            confirmButtonText: "Save and Get to Home again",
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                Swal.fire("Saved!", "", "success");
+                                // Swal.fire("Saved!", "", "success");
+                                // Here you Go back to Home again + Prize ID 
+                                const firstPageForm = document.getElementById("first_page_spin");
+                                firstPageForm.submit();
                             }
                         });
                         theSpinningWheel.remove();
