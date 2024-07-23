@@ -264,17 +264,37 @@ Route::post('/edit-display', function (Request $request) {
     $displayObject  = Display::findOrFail($request->edited_display_id);
 
     if ($displayObject->isAuthorized != $request->authorization) {
-        dd('Authorization Changed ');
-        // Comparare auth Old and new , Then Toggle 
+        $token = getTokenHelper();
+        $xiboBaseUrl = "http://localhost/api/";
+        $toggleAuth = Http::withToken($token)
+            ->put($xiboBaseUrl . "display/authorise/" . $displayObject->xiboId);
     }
 
     if ($displayObject->displayLayoutId != $request->layout_id) {
-        dd('Layout Changed ');
-        // Compate layout id Old and new and then toggle 
+        $token = getTokenHelper();
+        $xiboBaseUrl = "http://localhost/api/";
+        $changeDefaultLayout = Http::withToken($token)
+            ->put($xiboBaseUrl . "display/defaultlayout/" . $displayObject->xiboId);
     }
-
-    dd('Nothing Changed');
-
-
-    // dd($request->all());
+    return redirect()->route('get-displays');
 })->name('edit-display-post');
+
+
+function getTokenHelper()
+{
+    $xiboBaseUrl = "http://localhost/api/";
+    $response = Http::asForm()->post($xiboBaseUrl . "authorize/access_token", [
+        'client_id' => 'e4facebec0df822d59621962d1321606aa0e6ec4',
+        'client_secret' => '45cb3b5c8daad46bdac1fd91a2b44d92387d2ff02f17c00a849a8ceef96db9d52870c177d279e562f60c59531f0803b5e107105a41ec4b01691cb0ab2fdcc33d7b25babdffda0f98dddb20eedcdb1801e6f4d19cebd2c22ac4088652da60e39175139225b016edaa48152eb9a9c242f33e135ba08a2638c154feb7cdb1e5c3',
+        'grant_type' => 'client_credentials',
+    ]);
+
+    if ($response->successful()) {
+        $responseData = $response->json();
+        $cmsToken = $responseData['access_token']; // & 1 [TOKEN]
+        return $cmsToken;
+    } else {
+        // TODO : Make it Raise Error 404 
+        return "Error";
+    }
+}
