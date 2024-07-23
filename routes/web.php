@@ -224,7 +224,7 @@ Route::get('/get-displays-data', function (Request $request) {
         // dd($layoutsArray) ;
         foreach ($layoutsArray as $eachLayout) {
             $layoutXiboId  = $eachLayout['layoutId'];
-            $layoutExist = Layout::where($layoutXiboId)->first();
+            $layoutExist = Layout::where('xiboId' , $layoutXiboId)->first();
             if ($layoutExist) {
                 $layoutExist->xiboId = $eachLayout['layoutId'];
                 $layoutExist->publishingStatus = $eachLayout['publishedStatus'];
