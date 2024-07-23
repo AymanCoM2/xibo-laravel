@@ -15,8 +15,8 @@
                 <label for="invoice">Invoice Number:</label>
                 <div class="input-container">
                     <input type="text" name="invoice" id="invoice" class="text-input" />
-                    <div class="invalid-feedback">
-                        invalid-feedback
+                    <div class="invalid-feedback" id="invalid_feedback" style="color: red;">
+
                     </div>
                     <button type="button" id="deleteButton">X</button>
                     <button type="button" id="checkButton">Check</button>
@@ -37,30 +37,39 @@
         </div>
     </div>
 
+    <form action="{{ route('spin-win-page-p2') }}" id="next_page_spin">
+        {{-- Hidden Form To Next Action,Submitted If all is Good --}}
+    </form>
 
     <script>
+        const baseURL = "{{ url('/') }}";
         const checkButton = document.getElementById("checkButton");
 
         checkButton.addEventListener("click", function() {
             const invoiceInput = document.getElementById("invoice");
+            const feedBack = document.getElementById("invalid_feedback");
+            const nextPageForm = document.getElementById("next_page_spin");
             const invoiceValue = invoiceInput.value;
-            fetch(`http://127.0.0.1:8000/api/verify-invoice/${invoiceValue}`)
-                .then((response) => response.json())
+            fetch(`${baseURL}/check-invoice/${invoiceValue}`)
+                .then((response) => {
+                    return response.json();
+                })
                 .then((data) => {
-                    console.log("API Response:", data.invoice_id);
+                    // Check Here Vlaid of Not to Submit form 
+                    console.log("API Response:", data);
+                    if (data.valid) {
+                        // GET TO NEXT Form 
+                        // alert('VALID');
+                        nextPageForm.submit();
+                    } else {
+                        invoiceInput.style.border = "2px solid red";
+                        feedBack.innerText = data.message;
+                    }
                 })
                 .catch((error) => {
-                    console.error("Error:", error);
+                    alert(error.message);
+                    console.error("Error:", error.message);
                 });
-
-            if (invoiceValue === "567") {
-                let modal = document.getElementById("mdco");
-                modal.remove();
-                // theSpinningWheel.style.visibility = "visible";
-                // alert("True");
-            } else {
-                invoiceInput.style.border = "2px solid red";
-            }
         });
 
         const invoiceInput = document.getElementById("invoice");
