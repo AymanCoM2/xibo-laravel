@@ -102,6 +102,13 @@
                 </li>
 
                 <li class="nav-main-item">
+                    <a class="nav-main-link" href="{{ route('spin-win-page') }}">
+                        <i class="nav-main-link-icon fa fa-spinner"></i>
+                        <span class="nav-main-link-name">Spin-Win-Page</span>
+                    </a>
+                </li>
+
+                <li class="nav-main-item">
                     <a class="nav-main-link" href="#">
                         <i class="nav-main-link-icon fa fa-arrow-left"></i>
                         <span class="nav-main-link-name">Log Out</span>

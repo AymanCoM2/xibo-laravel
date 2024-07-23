@@ -24,3 +24,8 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('home-page');
 })->name('home-page');
+
+
+Route::get('/spin-win-page', function () {
+    return view('screenGames.spin-win');
+})->name('spin-win-page');
