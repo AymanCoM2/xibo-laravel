@@ -27,5 +27,5 @@ Route::get('/home', function () {
 
 
 Route::get('/spin-win-page', function () {
-    return view('screenGames.spin-win');
-})->name('spin-win-page');
+    return view('screenGames.spin-win-p1');
+})->name('spin-win-page-p1');

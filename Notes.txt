@@ -1,19 +1,14 @@
-UI: 
-Chips Bag And then Alert with the Prize ; 
-
-Data: 
-Channel Obesrver
-Syncing Data [ Once Data is Added to DB in Laravel ]
-
-
 APIs making 
     - Make Layouts Blade Views and Assign Links To layouts as Web pages
-    
-Views Observeing Data
 Screens Connected to Store; 
-
-
 TODO: Showing Validation ERRO in Edit Product and Store And other Forms ; 
-
+==========================
+Split Spin-Win Into 2 Pages 'Cheecker and Weheel'
+Mario Thing to "Assgin Layout"
+=====================
+All things Needed For Syncing Can be Collected in One Place
+Schedule + CRON
 Sync the data from API abut Layouts and Displays and Token 
 and Data ....etc
+=================
+

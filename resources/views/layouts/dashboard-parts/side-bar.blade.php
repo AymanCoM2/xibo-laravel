@@ -102,7 +102,7 @@
                 </li>
 
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="{{ route('spin-win-page') }}">
+                    <a class="nav-main-link" href="{{ route('spin-win-page-p1') }}">
                         <i class="nav-main-link-icon fa fa-spinner"></i>
                         <span class="nav-main-link-name">Spin-Win-Page</span>
                     </a>
