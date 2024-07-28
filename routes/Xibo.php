@@ -18,7 +18,8 @@ Route::get('/get-displays-data', function (Request $request) {
      * 1- Get the Token : 
      * TODO : See how to Make it Last Longer 
      */
-    $xiboBaseUrl = "http://localhost/api/";
+    // $xiboBaseUrl = "http://localhost/api/";
+    $xiboBaseUrl = "https://a413-197-35-116-158.ngrok-free.app/api/";
     $response = Http::asForm()->post($xiboBaseUrl . "authorize/access_token", [
         'client_id' => 'e4facebec0df822d59621962d1321606aa0e6ec4',
         'client_secret' => '45cb3b5c8daad46bdac1fd91a2b44d92387d2ff02f17c00a849a8ceef96db9d52870c177d279e562f60c59531f0803b5e107105a41ec4b01691cb0ab2fdcc33d7b25babdffda0f98dddb20eedcdb1801e6f4d19cebd2c22ac4088652da60e39175139225b016edaa48152eb9a9c242f33e135ba08a2638c154feb7cdb1e5c3',
@@ -114,14 +115,16 @@ Route::post('/edit-display', function (Request $request) {
 
     if ($displayObject->isAuthorized != $request->authorization) {
         $token = getTokenHelper();
-        $xiboBaseUrl = "http://localhost/api/";
+        // $xiboBaseUrl = "http://localhost/api/";
+        $xiboBaseUrl = "https://a413-197-35-116-158.ngrok-free.app/api/";
         $toggleAuth = Http::withToken($token)
             ->put($xiboBaseUrl . "display/authorise/" . $displayObject->xiboId);
     }
 
     if ($displayObject->displayLayoutId != $request->layout_id) {
         $token = getTokenHelper();
-        $xiboBaseUrl = "http://localhost/api/";
+        // $xiboBaseUrl = "http://localhost/api/";
+        $xiboBaseUrl = "https://a413-197-35-116-158.ngrok-free.app/api/";
         $changeDefaultLayout = Http::withToken($token)
             ->put(
                 $xiboBaseUrl . "display/defaultlayout/" . $displayObject->xiboId,
@@ -136,7 +139,8 @@ Route::post('/edit-display', function (Request $request) {
 
 function getTokenHelper()
 {
-    $xiboBaseUrl = "http://localhost/api/";
+    // $xiboBaseUrl = "http://localhost/api/";
+    $xiboBaseUrl = "https://a413-197-35-116-158.ngrok-free.app/api/";
     $response = Http::asForm()->post($xiboBaseUrl . "authorize/access_token", [
         'client_id' => 'e4facebec0df822d59621962d1321606aa0e6ec4',
         'client_secret' => '45cb3b5c8daad46bdac1fd91a2b44d92387d2ff02f17c00a849a8ceef96db9d52870c177d279e562f60c59531f0803b5e107105a41ec4b01691cb0ab2fdcc33d7b25babdffda0f98dddb20eedcdb1801e6f4d19cebd2c22ac4088652da60e39175139225b016edaa48152eb9a9c242f33e135ba08a2638c154feb7cdb1e5c3',
