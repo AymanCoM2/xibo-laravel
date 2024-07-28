@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\Http;
 // ! ==================== Consuming XIBO  ==================== 
 
 Route::get('/get-displays-data', function (Request $request) {
-
-
     Display::truncate() ; 
     Layout::truncate() ; 
     // TODO : this truncate is not suitable at all , TEMPORARY 
