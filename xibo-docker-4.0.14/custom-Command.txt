@@ -1,0 +1,1 @@
+docker-compose -f cms_custom-ports.yml up -d
